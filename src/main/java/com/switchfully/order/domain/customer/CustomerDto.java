@@ -1,5 +1,7 @@
 package com.switchfully.order.domain.customer;
 
+import com.switchfully.order.exception.InvalidUserException;
+
 public class CustomerDto {
     private String id;
     private String firstName;
@@ -9,11 +11,15 @@ public class CustomerDto {
     private String phoneNumber;
 
     public CustomerDto setId(String id) {
+
         this.id = id;
         return this;
     }
 
     public CustomerDto setFirstName(String firstName) {
+        if (firstName == null){
+            throw new InvalidUserException("Firstname must be filled in");
+        }
         this.firstName = firstName;
         return this;
     }
