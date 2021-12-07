@@ -1,4 +1,4 @@
-package com.switchfully.order.service.service;
+package com.switchfully.order.service.item;
 
 import com.switchfully.order.api.mapper.ItemMapper;
 import com.switchfully.order.domain.item.Item;
@@ -33,5 +33,10 @@ public class ItemServiceImpl implements ItemService {
         Item item = itemMapper.mapToDomain(itemDto);
         itemRepository.add(item);
         return item;
+    }
+
+    @Override
+    public ItemDto getItemBy(String itemId) {
+        return itemMapper.mapToDto(itemRepository.getItemBy(itemId));
     }
 }

@@ -1,4 +1,4 @@
-package com.switchfully.order.service.service;
+package com.switchfully.order.service.item;
 
 import com.switchfully.order.domain.item.Item;
 import com.switchfully.order.domain.item.ItemDto;
@@ -11,4 +11,5 @@ public interface ItemService {
 
     Item add(ItemDto itemDto);
 
+    ItemDto getItemBy(String itemId);
 }

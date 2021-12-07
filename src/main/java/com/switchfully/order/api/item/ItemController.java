@@ -1,10 +1,8 @@
 package com.switchfully.order.api.item;
 
-import com.switchfully.order.api.customer.CustomerController;
 import com.switchfully.order.domain.item.Item;
 import com.switchfully.order.domain.item.ItemDto;
-import com.switchfully.order.service.service.ItemService;
-import com.switchfully.order.service.service.ItemServiceImpl;
+import com.switchfully.order.service.item.ItemServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,13 @@ public class ItemController {
     public List<ItemDto> getAllItems(){
         logger.info("Get all items called!");
         return itemService.getAllItems();
+    }
+
+    @GetMapping(path = "/{itemId}",produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ItemDto getItemBy(@PathVariable("itemId") String itemId){
+        logger.info("Get item by id called!");
+        return itemService.getItemBy(itemId);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")

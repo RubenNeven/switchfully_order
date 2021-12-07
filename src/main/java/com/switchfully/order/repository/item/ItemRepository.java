@@ -24,7 +24,15 @@ public class ItemRepository {
         return items;
     }
 
+
     public void add(Item item) {
         items.add(item);
+    }
+
+    public Item getItemBy(String itemId) {
+        return items.stream()
+                .filter(item -> item.getId().equals(itemId))
+                .findFirst()
+                .get();
     }
 }
