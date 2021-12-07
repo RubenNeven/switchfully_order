@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +39,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto getItemBy(String itemId) {
-        return itemMapper.mapToDto(itemRepository.getItemBy(itemId));
+        Optional<Item> itemBy = itemRepository.getItemBy(itemId);
+        if (itemBy.isEmpty()) {
+            throw new NoSuchElementException("Item with id: " + itemId + " not found!");
+        } else {
+            return itemMapper.mapToDto(itemBy.get());
+        }
     }
 }

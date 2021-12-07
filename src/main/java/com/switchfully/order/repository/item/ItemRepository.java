@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ItemRepository {
@@ -24,15 +25,13 @@ public class ItemRepository {
         return items;
     }
 
-
     public void add(Item item) {
         items.add(item);
     }
 
-    public Item getItemBy(String itemId) {
+    public Optional<Item> getItemBy(String itemId) {
         return items.stream()
                 .filter(item -> item.getId().equals(itemId))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 }

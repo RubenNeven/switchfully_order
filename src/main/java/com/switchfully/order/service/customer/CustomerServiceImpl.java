@@ -3,11 +3,13 @@ package com.switchfully.order.service.customer;
 import com.switchfully.order.api.mapper.CustomerMapper;
 import com.switchfully.order.domain.customer.Customer;
 import com.switchfully.order.domain.customer.CustomerDto;
+import com.switchfully.order.exception.InvalidCustomerException;
 import com.switchfully.order.repository.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +32,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerBy(String customerId) {
-        return customerMapper.mapToDto(customerRepository.getCustomerBy(customerId));
+        Optional<Customer> customer = customerRepository.getCustomerBy(customerId);
+        if (customer.isEmpty()){
+            throw new InvalidCustomerException("Customer with id: " + customerId + " not found");
+        } else {
+            return customerMapper.mapToDto(customer.get());
+        }
     }
 
     @Override

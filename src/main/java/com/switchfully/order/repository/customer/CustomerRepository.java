@@ -5,6 +5,7 @@ import com.switchfully.order.domain.customer.Customer;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -29,10 +30,9 @@ public class CustomerRepository {
         customers.add(customer);
     }
 
-    public Customer getCustomerBy(String customerId) {
+    public Optional<Customer> getCustomerBy(String customerId) {
         return customers.stream()
                 .filter(customer -> customer.getId().equals(customerId))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 }

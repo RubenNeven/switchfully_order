@@ -1,19 +1,16 @@
 package com.switchfully.order.domain.order;
 
-import com.switchfully.order.domain.item.Item;
-
-import java.util.List;
 import java.util.UUID;
 
 public class Order {
     private final String orderId;
     private final String customerId;
-    private List<ItemGroup> itemGroups;
+    private ItemGroup itemGroup;
 
-    public Order(String customerId, List<ItemGroup> itemGroups) {
+    public Order(String customerId, ItemGroup itemGroup) {
         this.orderId = UUID.randomUUID().toString();
         this.customerId = customerId;
-        this.itemGroups = itemGroups;
+        this.itemGroup = itemGroup;
     }
 
     public String getOrderId() {
@@ -24,7 +21,7 @@ public class Order {
         return customerId;
     }
 
-    public List<ItemGroup> getItemGroups() {
-        return itemGroups;
+    public ItemGroup getItemGroup() {
+        return itemGroup;
     }
 }
