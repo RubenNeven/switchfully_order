@@ -1,6 +1,6 @@
 package com.switchfully.order.api;
 
-import com.switchfully.order.exception.InvalidUserException;
+import com.switchfully.order.exception.InvalidCustomerException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -10,8 +10,8 @@ import java.io.IOException;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(InvalidUserException.class)
-    protected void invalidUser(InvalidUserException ex, HttpServletResponse response) throws IOException {
+    @ExceptionHandler(InvalidCustomerException.class)
+    protected void invalidUser(InvalidCustomerException ex, HttpServletResponse response) throws IOException {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
     }
 }

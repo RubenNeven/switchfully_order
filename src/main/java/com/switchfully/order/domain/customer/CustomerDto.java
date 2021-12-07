@@ -1,7 +1,5 @@
 package com.switchfully.order.domain.customer;
 
-import com.switchfully.order.exception.InvalidUserException;
-
 public class CustomerDto {
     private String id;
     private String firstName;

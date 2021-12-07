@@ -1,7 +1,7 @@
 package com.switchfully.order.domain.customer;
 
 
-import com.switchfully.order.exception.InvalidUserException;
+import com.switchfully.order.exception.InvalidCustomerException;
 
 import java.util.UUID;
 
@@ -13,34 +13,30 @@ public class Customer {
     private final Address address;
     private final String phoneNumber;
 
-    public Customer(String firstName, String lastName, String emailAddress, Address address, String phoneNumber) {
-        this.id = UUID.randomUUID().toString();
+    public Customer(String firstName, String lastName, String emailAddress, Address address, String phoneNumber) throws RuntimeException {
         if (!isValidInput(firstName)) {
-            throw new InvalidUserException("Please fill in firstname");
+            throw new InvalidCustomerException("Please fill in firstname");
         } else if (!isValidInput(lastName)) {
-            throw new InvalidUserException("Please fill in lastname");
+            throw new InvalidCustomerException("Please fill in lastname");
         } else if (!isValidInput(emailAddress)) {
-            throw new InvalidUserException("Please fill in email-address");
+            throw new InvalidCustomerException("Please fill in email-address");
         } else if (!isValidInput(phoneNumber)) {
-            throw new InvalidUserException("Please fill in phonenumber");
+            throw new InvalidCustomerException("Please fill in phone number");
         } else if (!isValidInput(address.getStreet())) {
-            throw new InvalidUserException("Please fill in street");
+            throw new InvalidCustomerException("Please fill in street");
         } else if (!isValidInput(address.getHouseNumber())) {
-            throw new InvalidUserException("Please fill in house number");
+            throw new InvalidCustomerException("Please fill in house number");
         } else if (!isValidInput(address.getCity())) {
-            throw new InvalidUserException("Please fill in city");
+            throw new InvalidCustomerException("Please fill in city");
         } else if (!isValidInput(address.getPostalCode())) {
-            throw new InvalidUserException("Please fill in postal code");
+            throw new InvalidCustomerException("Please fill in postal code");
         }
+        this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    private boolean isValidInput(String inputString) {
-        return inputString != null;
     }
 
     public String getId() {
@@ -65,5 +61,9 @@ public class Customer {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public static boolean isValidInput(String inputString) {
+        return inputString != null;
     }
 }
