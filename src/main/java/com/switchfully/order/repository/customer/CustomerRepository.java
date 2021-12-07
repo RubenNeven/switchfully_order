@@ -2,10 +2,12 @@ package com.switchfully.order.repository.customer;
 
 import com.switchfully.order.domain.customer.Address;
 import com.switchfully.order.domain.customer.Customer;
+import com.switchfully.order.domain.customer.CustomerDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 public class CustomerRepository {
@@ -27,5 +29,12 @@ public class CustomerRepository {
 
     public void createCustomer(Customer customer){
         customers.add(customer);
+    }
+
+    public Customer getCustomerBy(String customerId) {
+        return customers.stream()
+                .filter(customer -> customer.getId().equals(customerId))
+                .findFirst()
+                .get();
     }
 }

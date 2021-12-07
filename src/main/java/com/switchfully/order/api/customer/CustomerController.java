@@ -31,9 +31,16 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
+    @GetMapping(path = "/{customerId}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto getAllCustomers(@PathVariable("customerId") String customerId) {
+        logger.info("Get customer!");
+        return customerService.getCustomerBy(customerId);
+    }
+
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public Customer createCustomer(@RequestBody CustomerDto customerDto){
+    public Customer createCustomer(@RequestBody CustomerDto customerDto) {
         logger.info("Create customer called!");
         return customerService.createCustomer(customerDto);
     }

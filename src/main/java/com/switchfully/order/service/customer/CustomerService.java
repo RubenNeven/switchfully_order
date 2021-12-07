@@ -9,5 +9,7 @@ public interface CustomerService {
 
     List<CustomerDto> getAllCustomers();
 
+    CustomerDto getCustomerBy(String customerId);
+
     Customer createCustomer(CustomerDto customerDto);
 }

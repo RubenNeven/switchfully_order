@@ -28,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CustomerDto getCustomerBy(String customerId) {
+        return customerMapper.mapToDto(customerRepository.getCustomerBy(customerId));
+    }
+
     public Customer createCustomer(CustomerDto customerDto){
         Customer customer = customerMapper.mapToDomain(customerDto);
         customerRepository.createCustomer(customer);
