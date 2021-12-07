@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface ItemService {
 
-    public List<ItemDto> getAllItems();
+    List<ItemDto> getAllItems();
+
+    Item add(ItemDto itemDto);
+
 }

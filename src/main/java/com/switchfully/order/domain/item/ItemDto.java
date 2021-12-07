@@ -4,6 +4,8 @@ public class ItemDto {
     private String id;
     private String name;
     private String description;
+    private double price;
+
     private int amount;
 
     public ItemDto setId(String id) {
@@ -18,6 +20,11 @@ public class ItemDto {
 
     public ItemDto setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public ItemDto setPrice(double price) {
+        this.price = price;
         return this;
     }
 
@@ -40,5 +47,9 @@ public class ItemDto {
 
     public int getAmount() {
         return amount;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }

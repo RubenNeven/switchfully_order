@@ -2,10 +2,7 @@ package com.switchfully.order.domain.customer;
 
 import com.switchfully.order.exception.InvalidCustomerException;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerTest {
 

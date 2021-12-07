@@ -12,10 +12,11 @@ public class ItemMapper {
                 .setId(item.getId())
                 .setName(item.getName())
                 .setDescription(item.getDescription())
+                .setPrice(item.getPrice())
                 .setAmount(item.getAmount());
     }
 
     public Item mapToDomain(ItemDto itemDto){
-        return new Item(itemDto.getName(), itemDto.getDescription(), itemDto.getAmount());
+        return new Item(itemDto.getName(), itemDto.getDescription(), itemDto.getPrice(), itemDto.getAmount());
     }
 }

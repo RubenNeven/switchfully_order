@@ -1,6 +1,5 @@
 package com.switchfully.order.domain.customer;
 
-
 import com.switchfully.order.exception.InvalidCustomerException;
 
 import java.util.UUID;
