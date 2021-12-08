@@ -2,6 +2,7 @@ package com.switchfully.order.api.item;
 
 import com.switchfully.order.domain.item.Item;
 import com.switchfully.order.domain.item.ItemDto;
+import com.switchfully.order.service.item.ItemService;
 import com.switchfully.order.service.item.ItemServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ItemController {
 
     Logger logger = LoggerFactory.getLogger(ItemController.class);
-    private final ItemServiceImpl itemService;
+    private final ItemService itemService;
 
     @Autowired
     public ItemController(ItemServiceImpl itemService) {
@@ -42,5 +43,12 @@ public class ItemController {
     public Item addItem(@RequestBody ItemDto itemDto){
         logger.info("Add item called!");
         return itemService.add(itemDto);
+    }
+
+    @PutMapping(path = "/{itemId}", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Item update(@PathVariable("itemId") String itemId, @RequestBody ItemDto updateItemDto){
+        logger.info("Update item called!");
+        return itemService.update(itemId, updateItemDto);
     }
 }

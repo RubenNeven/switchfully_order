@@ -52,4 +52,15 @@ public class ItemDto {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "ItemDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", amount=" + amount +
+                '}';
+    }
 }

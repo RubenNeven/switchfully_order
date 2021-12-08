@@ -1,10 +1,12 @@
 package com.switchfully.order.repository.item;
 
 import com.switchfully.order.domain.item.Item;
+import com.switchfully.order.domain.item.ItemDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Repository
@@ -33,5 +35,19 @@ public class ItemRepository {
         return items.stream()
                 .filter(item -> item.getId().equals(itemId))
                 .findFirst();
+    }
+
+    /**
+     * Update item methode 2
+     * */
+    public void update(String itemId, Item updateItem) {
+        Optional<Item> existingItem = getItemBy(itemId);
+        if (existingItem.isEmpty()) {
+            throw new NoSuchElementException("Item with id: " + itemId + " not found!");
+        } else {
+            int indexOfExistingItem = items.indexOf(existingItem.get());
+            System.out.println(indexOfExistingItem);
+            items.set(indexOfExistingItem, updateItem);
+        }
     }
 }

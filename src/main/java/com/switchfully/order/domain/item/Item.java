@@ -6,10 +6,10 @@ import java.util.UUID;
 
 public class Item {
     private final String id;
-    private final String name;
-    private final String description;
-    private final double price;
-    private final int amount;
+    private String name;
+    private String description;
+    private double price;
+    private int amount;
 
     public Item(String name, String description, double price, int amount) {
         if (!isValidInputString(name)) {
@@ -22,6 +22,14 @@ public class Item {
             throw new InvalidItemException("Please fill in item amount");
         }
         this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.amount = amount;
+    }
+
+    public Item(String id, String name, String description, double price, int amount) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -55,5 +63,36 @@ public class Item {
 
     public static boolean isValidInputNumber(Number inputNumber) {
         return inputNumber != null;
+    }
+
+    public Item setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Item setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Item setPrice(double price) {
+        this.price = price;
+        return this;
+    }
+
+    public Item setAmount(int amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", amount=" + amount +
+                '}';
     }
 }

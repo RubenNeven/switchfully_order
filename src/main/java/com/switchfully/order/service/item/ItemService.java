@@ -12,4 +12,9 @@ public interface ItemService {
     Item add(ItemDto itemDto);
 
     ItemDto getItemBy(String itemId);
+
+    /**
+     * Update methode 2
+     * */
+    Item update(String itemId, ItemDto updateItemDto);
 }

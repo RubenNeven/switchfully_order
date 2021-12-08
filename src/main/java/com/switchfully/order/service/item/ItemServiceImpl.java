@@ -46,4 +46,15 @@ public class ItemServiceImpl implements ItemService {
             return itemMapper.mapToDto(itemBy.get());
         }
     }
+
+    /**
+     * Update methode 2
+     * */
+    @Override
+    public Item update(String itemId, ItemDto updateItemDto) {
+        Item updateItem = itemMapper.mapToDomainWithId(itemId, updateItemDto);
+        System.out.println(updateItem);
+        itemRepository.update(itemId, updateItem);
+        return updateItem;
+    }
 }
