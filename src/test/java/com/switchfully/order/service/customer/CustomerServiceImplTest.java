@@ -4,6 +4,7 @@ import com.switchfully.order.api.mapper.CustomerMapper;
 import com.switchfully.order.domain.customer.AddressDto;
 import com.switchfully.order.domain.customer.Customer;
 import com.switchfully.order.domain.customer.CustomerDto;
+import com.switchfully.order.exception.InvalidCustomerException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ class CustomerServiceImplTest {
 
     @Test
     void givenAnNonExistingCustomerId_whenGettingCustomerById_thenTheCorrectCustomerIsReturned() {
-        Assertions.assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(() -> customerService.getCustomerBy("not an existing customer"));
+        Assertions.assertThatExceptionOfType(InvalidCustomerException.class).isThrownBy(() -> customerService.getCustomerBy("not an existing customer"));
     }
 
     @Test
