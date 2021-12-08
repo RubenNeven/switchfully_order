@@ -3,6 +3,7 @@ package com.switchfully.order.service.item;
 import com.switchfully.order.api.mapper.ItemMapper;
 import com.switchfully.order.domain.item.Item;
 import com.switchfully.order.domain.item.ItemDto;
+import com.switchfully.order.exception.ItemNotFoundException;
 import com.switchfully.order.repository.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemDto getItemBy(String itemId) {
         Optional<Item> itemBy = itemRepository.getItemBy(itemId);
         if (itemBy.isEmpty()) {
-            throw new NoSuchElementException("Item with id: " + itemId + " not found!");
+            throw new ItemNotFoundException("Item with id: " + itemId + " not found!");
         } else {
             return itemMapper.mapToDto(itemBy.get());
         }
@@ -52,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
      * */
     @Override
     public Item update(String itemId, ItemDto updateItemDto) {
-        Item updateItem = itemMapper.mapToDomainWithId(itemId, updateItemDto);
+        Item updateItem = itemMapper.mapToDomain(itemId, updateItemDto);
         System.out.println(updateItem);
         itemRepository.update(itemId, updateItem);
         return updateItem;

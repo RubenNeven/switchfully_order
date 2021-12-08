@@ -20,7 +20,8 @@ public class ItemMapper {
         return new Item(itemDto.getName(), itemDto.getDescription(), itemDto.getPrice(), itemDto.getAmount());
     }
 
-    public Item mapToDomainWithId(String existingId, ItemDto updateItemDto){
-        return new Item(existingId, updateItemDto.getName(), updateItemDto.getDescription(), updateItemDto.getPrice(), updateItemDto.getAmount());
+    public Item mapToDomain(String id, ItemDto itemDto){
+        return new Item(id, itemDto.getName(), itemDto.getDescription(), itemDto.getPrice(), itemDto.getAmount());
     }
+
 }
