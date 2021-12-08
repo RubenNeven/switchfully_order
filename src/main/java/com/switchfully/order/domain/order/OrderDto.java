@@ -4,9 +4,14 @@ public class OrderDto {
     private String orderId;
     private String customerId;
     private ItemGroupDto itemGroupDto;
+    private double totalPrice;
 
     public String getOrderId() {
         return orderId;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     public String getCustomerId() {
@@ -29,6 +34,11 @@ public class OrderDto {
 
     public OrderDto setItemGroupDto(ItemGroupDto itemGroupDto) {
         this.itemGroupDto = itemGroupDto;
+        return this;
+    }
+
+    public OrderDto setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
         return this;
     }
 }

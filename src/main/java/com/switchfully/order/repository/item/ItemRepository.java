@@ -47,7 +47,6 @@ public class ItemRepository {
             throw new ItemNotFoundException("Item with id: " + itemId + " not found!");
         } else {
             int indexOfExistingItem = items.indexOf(existingItem.get());
-            System.out.println(indexOfExistingItem);
             items.set(indexOfExistingItem, updateItem);
         }
     }

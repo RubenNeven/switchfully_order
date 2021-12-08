@@ -19,11 +19,12 @@ public class OrderMapper {
         return new OrderDto()
                 .setOrderId(order.getOrderId())
                 .setCustomerId(order.getCustomerId())
-                .setItemGroupDto(itemGroupMapper.mapToDto(order.getItemGroup()));
+                .setItemGroupDto(itemGroupMapper.mapToDto(order.getItemGroup()))
+                .setTotalPrice(order.getTotalPrice());
     }
 
     public Order mapToDomain(OrderDto orderDto){
-        return new Order(orderDto.getCustomerId(), itemGroupMapper.mapToDomain(orderDto.getItemGroupDto()));
+        return new Order(orderDto.getCustomerId(), itemGroupMapper.mapToDomain(orderDto.getItemGroupDto()), orderDto.getTotalPrice());
     }
 
 

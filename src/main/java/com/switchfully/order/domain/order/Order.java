@@ -6,11 +6,13 @@ public class Order {
     private final String orderId;
     private final String customerId;
     private ItemGroup itemGroup;
+    private double totalPrice;
 
-    public Order(String customerId, ItemGroup itemGroup) {
+    public Order(String customerId, ItemGroup itemGroup, double totalPrice) {
         this.orderId = UUID.randomUUID().toString();
         this.customerId = customerId;
         this.itemGroup = itemGroup;
+        this.totalPrice = totalPrice;
     }
 
     public String getOrderId() {
@@ -23,5 +25,9 @@ public class Order {
 
     public ItemGroup getItemGroup() {
         return itemGroup;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 }

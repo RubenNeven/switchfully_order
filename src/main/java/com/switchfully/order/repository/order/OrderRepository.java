@@ -19,8 +19,8 @@ public class OrderRepository {
     }
 
     public void populate(){
-        orders.add(new Order("customerId1", new ItemGroup("itemId1", 5, LocalDate.now())));
-        orders.add(new Order("customerId2", new ItemGroup("itemId2", 5, LocalDate.now())));
+        orders.add(new Order("customerId1", new ItemGroup("itemId1", 5, LocalDate.now()), 500));
+        orders.add(new Order("customerId2", new ItemGroup("itemId2", 5, LocalDate.now()), 650));
     }
 
     public void add(Order order){
