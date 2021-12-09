@@ -16,4 +16,6 @@ public interface ItemService {
     ItemDto getItemBy(String itemId);
 
     Item update(String itemId, ItemDto updateItemDto);
+
+    List<ItemDto> getItemsBasedOnStockLevel(String stockLevel);
 }

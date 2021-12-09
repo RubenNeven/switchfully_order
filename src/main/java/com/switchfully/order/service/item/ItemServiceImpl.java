@@ -67,4 +67,32 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.update(itemId, updateItem);
         return updateItem;
     }
+
+    @Override
+    public List<ItemDto> getItemsBasedOnStockLevel(String stockLevel) {
+        List<ItemDto> itemsByStockLevel;
+        switch (stockLevel){
+            case "STOCK_LOW":
+                itemsByStockLevel = itemRepository.getAllItems().stream()
+                        .filter(item -> item.getAmount() < 5)
+                        .map(itemMapper::mapToDto)
+                        .collect(Collectors.toList());
+                break;
+            case "STOCK_MEDIUM":
+                itemsByStockLevel =itemRepository.getAllItems().stream()
+                        .filter(item -> item.getAmount() > 5)
+                        .filter(item -> item.getAmount() < 10)
+                        .map(itemMapper::mapToDto)
+                        .collect(Collectors.toList());
+                break;
+            case "STOCK_HIGH":
+                itemsByStockLevel = itemRepository.getAllItems().stream()
+                        .filter(item -> item.getAmount() >= 10)
+                        .map(itemMapper::mapToDto)
+                        .collect(Collectors.toList());
+                break;
+            default: itemsByStockLevel = null;
+        }
+        return itemsByStockLevel;
+    }
 }

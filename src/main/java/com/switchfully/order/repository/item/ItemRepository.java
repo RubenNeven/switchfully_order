@@ -20,7 +20,8 @@ public class ItemRepository {
     }
 
     private void populateItems() {
-        items.add(new Item("Cervelo S5", "Road Bike", 5500.99, 10));
+        items.add(new Item("Cervelo S5", "Road Bike", 5500.99, 2));
+        items.add(new Item("Wintergloves", "Winter gloves for temperatures 0 - 10", 25, 6));
         items.add(new Item("Giro Aether", "Cycling Helmet", 159.99, 10));
     }
 
