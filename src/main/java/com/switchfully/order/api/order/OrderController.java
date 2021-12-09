@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.*;
 
 
 @RestController
@@ -25,16 +28,29 @@ public class OrderController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(OK)
     public List<OrderDto> getAllOrders(){
         logger.info("Get all orders called");
         return orderService.getAllOrders();
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(CREATED)
     public Order createOrder(@RequestBody OrderDto orderDto){
         logger.info("Create order called");
         return orderService.add(orderDto);
+    }
+
+    @GetMapping(path = "/shippedToday")
+    public List<OrderDto> getOrdersShippedToday(){
+        logger.info("Orders shipped today called");
+        return orderService.getOrdersShippedToday();
+    }
+
+    @GetMapping(path = "/shippedByDate")
+    @ResponseStatus(OK)
+    public List<OrderDto> getOrdersShippedOnDate(@RequestParam(name = "requestDate") String requestDate){
+        logger.info("Orders shipped by date: " + requestDate);
+        return orderService.getOrdersShippedByDay(requestDate);
     }
 }

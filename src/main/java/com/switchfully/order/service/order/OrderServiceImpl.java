@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
 
     public static final int ITEM_NOT_IN_STOCK_SHIPPING_DAYS = 7;
     public static final int ITEM_IN_STOCK_SHIPPING_DAYS = 1;
+
     private final OrderMapper orderMapper;
     private final OrderRepository orderRepository;
     private final ItemService itemService;
@@ -65,6 +66,23 @@ public class OrderServiceImpl implements OrderService {
                 .map(orderMapper::mapToDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<OrderDto> getOrdersShippedToday() {
+        return orderRepository.getAllOrders().stream()
+                .filter(order -> order.getItemGroup().getShippingDate().isEqual(LocalDate.now()))
+                .map(orderMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderDto> getOrdersShippedByDay(String requestDate) {
+        return orderRepository.getAllOrders().stream()
+                .filter(order -> order.getItemGroup().getShippingDate().isEqual(LocalDate.parse(requestDate)))
+                .map(orderMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
 
     private double calculateTotalPrice(OrderDto orderDto) {
         int orderAmount = orderDto.getItemGroupDto().getAmount();

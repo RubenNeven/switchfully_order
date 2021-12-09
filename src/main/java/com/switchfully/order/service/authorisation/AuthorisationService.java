@@ -24,8 +24,13 @@ public class AuthorisationService {
         this.userService = userService;
         authorisationMap = new HashMap<>();
 
+        // Customer features
         authorisationMap.put(VIEW_ALL_CUSTOMERS, ADMIN);
         authorisationMap.put(VIEW_SINGLE_CUSTOMER, ADMIN);
+
+        // Item features
+        authorisationMap.put(ADD_ITEM, ADMIN);
+        authorisationMap.put(UPDATE_ITEM, ADMIN);
 
     }
 

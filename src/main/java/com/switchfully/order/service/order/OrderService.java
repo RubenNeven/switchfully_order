@@ -10,4 +10,8 @@ public interface OrderService {
     Order add(OrderDto orderDto);
 
     List<OrderDto> getAllOrders();
+
+    List<OrderDto> getOrdersShippedToday();
+
+    List<OrderDto> getOrdersShippedByDay(String requestDate);
 }
