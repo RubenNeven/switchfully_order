@@ -31,6 +31,7 @@ public class AuthorisationService {
         // Item features
         authorisationMap.put(ADD_ITEM, ADMIN);
         authorisationMap.put(UPDATE_ITEM, ADMIN);
+        authorisationMap.put(GET_ITEMS_BY_STOCK_LEVEL, ADMIN);
 
     }
 

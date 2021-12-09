@@ -38,9 +38,11 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
-    @GetMapping(path = "/itemsByStockLevel",produces = "application/json")
+    @GetMapping(path = "/itemsByStockLevel", produces = "application/json")
     @ResponseStatus(OK)
-    public List<ItemDto> getItemsBasedOnStockLevel(@RequestParam String stockLevel){
+    public List<ItemDto> getItemsBasedOnStockLevel(@RequestParam String stockLevel, @RequestHeader(required = false, name = "authorization") String emailAddress) {
+        logger.info("Get items by stock level called!");
+        authorisationService.hasUserAccess(GET_ITEMS_BY_STOCK_LEVEL, emailAddress);
         return itemService.getItemsBasedOnStockLevel(stockLevel);
 
     }
