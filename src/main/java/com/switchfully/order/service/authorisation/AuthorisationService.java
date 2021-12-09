@@ -29,17 +29,17 @@ public class AuthorisationService {
 
     }
 
-    public boolean hasUserAccess(OrderFeature orderFeature, String authorization ){
-        if (authorisationMap.get(orderFeature).getAuthorisationLevel() > getAuthorisationLevel(authorization )){
-            throw new NoAccessException("User with email address: " + parseAuthorization(authorization)  + " has no access");
+    public boolean hasUserAccess(OrderFeature orderFeature, String authorization) {
+        if (authorisationMap.get(orderFeature).getAuthorisationLevel() > getAuthorisationLevel(authorization)) {
+            throw new NoAccessException("User with email address: " + parseAuthorization(authorization) + " with role " + getUserFromAuthorisation(authorization).getUserRole() + " has no access. Required role is: " + authorisationMap.get(orderFeature));
         }
         return true;
     }
 
-    public int getAuthorisationLevel(String authorization ){
+    public int getAuthorisationLevel(String authorization) {
         UserRole userRole = GUEST;
-        if (authorization  != null){
-            String emailAddressLoggedInUser = parseAuthorization(authorization );
+        if (authorization != null) {
+            String emailAddressLoggedInUser = parseAuthorization(authorization);
             User userByEmail = userService.getUserByEmailAddress(emailAddressLoggedInUser);
             userRole = userByEmail.getUserRole();
         }
@@ -47,11 +47,15 @@ public class AuthorisationService {
     }
 
 
-
-    public String parseAuthorization(String authorization ) {
-        String decodedUsernameAndPassword = new String(Base64.getDecoder().decode(authorization .substring("Basic ".length())));
+    public String parseAuthorization(String authorization) {
+        String decodedUsernameAndPassword = new String(Base64.getDecoder().decode(authorization.substring("Basic ".length())));
         System.out.println("decoded username & password: " + decodedUsernameAndPassword);
         String username = decodedUsernameAndPassword.substring(0, decodedUsernameAndPassword.indexOf(":"));
         return username;
+    }
+
+    public User getUserFromAuthorisation(String authorization) {
+        String emailAddressLoggedInUser = parseAuthorization(authorization);
+        return userService.getUserByEmailAddress(emailAddressLoggedInUser);
     }
 }

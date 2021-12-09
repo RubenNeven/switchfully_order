@@ -31,7 +31,7 @@ public class CustomerController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<CustomerDto> getAllCustomers(@RequestHeader(required = false) String authorization ) {
+    public List<CustomerDto> getAllCustomers(@RequestHeader(required = false) String authorization) {
         logger.info("Get all customers!");
         authorisationService.hasUserAccess(VIEW_ALL_CUSTOMERS, authorization );
         return customerService.getAllCustomers();
@@ -39,7 +39,7 @@ public class CustomerController {
 
     @GetMapping(path = "/{customerId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDto getAllCustomers(@PathVariable("customerId") String customerId, @RequestHeader(required = false) String emailAddress) {
+    public CustomerDto getCustomerById(@PathVariable("customerId") String customerId, @RequestHeader(required = false) String emailAddress) {
         logger.info("Get customer!");
         return customerService.getCustomerBy(customerId);
     }
