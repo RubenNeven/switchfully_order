@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.switchfully.order.domain.user.UserRole.*;
 
@@ -17,11 +18,22 @@ public class UserRepository {
 
     public UserRepository() {
         users = new ArrayList<>();
+        populate();
     }
 
     void populate(){
         users.add(new User("rubenneven@gmail.com", ADMIN));
         users.add(new User("miadomen@gmail.com", STAFF));
         users.add(new User("sofieverryssen@gmail.com", GUEST));
+    }
+
+    public List<User> getAllUsers() {
+        return users;
+    }
+
+    public Optional<User> getUserByEmailAddress(String emailAddress) {
+        return users.stream()
+                .filter(user -> user.getEmailAddress().equals(emailAddress))
+                .findFirst();
     }
 }
